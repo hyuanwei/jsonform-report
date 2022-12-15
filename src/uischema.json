@@ -1,55 +1,174 @@
 {
-  "type": "VerticalLayout",
-  "elements": [
-    {
-      "type": "Control",
-      "label": "Completed",
-      "scope": "#/properties/done"
-    },
-    {
-      "type": "Control",
-      "scope": "#/properties/name"
-    },
-    {
-      "type": "HorizontalLayout",
-      "elements": [
+    "type": "VerticalLayout",
+    "elements": [
         {
-          "type": "Control",
-          "scope": "#/properties/due_date"
+            "type": "Control",
+            "scope": "#/properties/reportType"
         },
         {
-          "type": "Control",
-          "scope": "#/properties/rating"
-        }
-      ]
-    },
-    {
-      "type": "HorizontalLayout",
-      "elements": [
-        {
-          "type": "Control",
-          "scope": "#/properties/recurrence"
-        },
-        {
-          "type": "Control",
-          "scope": "#/properties/recurrence_interval",
-          "rule": {
-            "effect": "HIDE",
-            "condition": {
-              "type": "LEAF",
-              "scope": "#/properties/recurrence",
-              "expectedValue": "Never"
+            "type": "Control",
+            "scope": "#/properties/producerOfRecords",
+            "rule": {
+                "effect": "SHOW",
+                "condition": {
+                    "scope": "#/properties/reportType",
+                    "schema": {
+                        "const": "Agency Conversion Report"
+                    }
+                }
             }
-          }
+        },
+        {
+            "type": "Control",
+            "scope": "#/properties/accountType",
+            "rule": {
+                "effect": "SHOW",
+                "condition": {
+                    "scope": "#/properties/reportType",
+                    "schema": {
+                        "enum": [
+                            "Agency Loss Run Report",
+                            "Daily Activity Report",
+                            "Payment Report",
+                            "Renewal Report"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "type": "Control",
+            "scope": "#/properties/startDate",
+            "options": {
+                "type": "string",
+                "format": "date",
+                "description": "schema-based date picker"
+            },
+            "rule": {
+                "effect": "SHOW",
+                "condition": {
+                    "scope": "#/properties/reportType",
+                    "schema": {
+                        "enum": [
+                            "Agency Loss Run Report",
+                            "Daily Activity Report",
+                            "Payment Report"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "type": "Control",
+            "scope": "#/properties/endDate",
+            "options": {
+                "type": "string",
+                "format": "date",
+                "description": "schema-based date picker"
+            },
+            "rule": {
+                "effect": "SHOW",
+                "condition": {
+                    "scope": "#/properties/reportType",
+                    "schema": {
+                        "enum": [
+                            "Agency Loss Run Report",
+                            "Daily Activity Report",
+                            "Payment Report"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "type": "Control",
+            "scope": "#/properties/paymentType",
+            "rule": {
+                "effect": "SHOW",
+                "condition": {
+                    "scope": "#/properties/reportType",
+                    "schema": {
+                        "const": "Payment Report"
+                    }
+                }
+            }
+        },
+        {
+            "type": "Control",
+            "scope": "#/properties/policyNumber",
+            "rule": {
+                "effect": "SHOW",
+                "condition": {
+                    "scope": "#/properties/reportType",
+                    "schema": {
+                        "const": "Policy Loss Run Report"
+                    }
+                }
+            }
+        },
+        {
+            "type": "Control",
+            "scope": "#/properties/reportMonth",
+            "options": {
+                "format": "date",
+                "clearLabel": "Clear it!",
+                "cancelLabel": "Abort",
+                "okLabel": "Do it",
+                "views": ["month"],
+                "dateFormat": "MM",
+                "dateSaveFormat": "MM"
+            },
+            "rule": {
+                "effect": "SHOW",
+                "condition": {
+                    "scope": "#/properties/reportType",
+                    "schema": {
+                        "enum": [
+                            "Agency Profile Report",
+                            "Commission Statement"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "type": "Control",
+            "scope": "#/properties/reportYear",
+            "options": {
+                "format": "date",
+                "clearLabel": "Clear it!",
+                "cancelLabel": "Abort",
+                "okLabel": "Do it",
+                "views": ["year"],
+                "dateFormat": "YYYY",
+                "dateSaveFormat": "YYYY"
+            },
+            "rule": {
+                "effect": "SHOW",
+                "condition": {
+                    "scope": "#/properties/reportType",
+                    "schema": {
+                        "enum": [
+                            "Agency Profile Report",
+                            "Commission Statement"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "type": "Control",
+            "label": "DATA GLOSSARY",
+            "scope": "#/properties/dataGlossary",
+            "rule": {
+                "effect": "SHOW",
+                "condition": {
+                    "scope": "#/properties/reportType",
+                    "schema": {
+                        "const": "Agency Profile Report"
+                    }
+                }
+            }
         }
-      ]
-    },
-    {
-      "type": "Control",
-      "scope": "#/properties/description",
-      "options": {
-        "multi": true
-      }
-    }
-  ]
+    ]
 }

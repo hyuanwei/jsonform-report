@@ -1,32 +1,96 @@
 {
-  "type": "object",
-  "properties": {
-    "name": {
-      "type": "string",
-      "minLength": 1
+    "type": "object",
+    "properties": {
+        "reportType": {
+            "type": "string",
+            "enum": [
+                "Agency Conversion Report",
+                "Agency Loss Run Report",
+                "Agency Profile Report",
+                "Daily Activity Report",
+                "Inforce Policy Report",
+                "Payment Report",
+                "Policy Loss Run Report",
+                "Renewal Report",
+                "Commission Statement"
+            ]
+        },
+        "producerOfRecords": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+                "type": "string",
+                "enum": ["Myself", "Amanda", "Mark"]
+            }
+        },
+
+        "accountType": {
+            "type": "string",
+            "enum": ["All", "Commercial Lines", "Personal Lines"]
+        },
+
+        "paymentType": {
+            "type": "array",
+            "uniqueItems": true,
+            "label": "Payment Type(s)",
+            "items": {
+                "type": "string",
+                "enum": [
+                    "All",
+                    "AGENCY SWEEP",
+                    "CHECK",
+                    "CREDIT/DEBIT CARD",
+                    "ELECTRONIC CARD"
+                ]
+            }
+        },
+
+        "startDate": {
+            "type": "string",
+            "format": "date"
+        },
+
+        "endDate": {
+            "type": "string",
+            "format": "date"
+        },
+
+        "reportMonth": {
+            "type": "string",
+            "description": "select month only"
+        },
+
+        "reportYear": {
+            "type": "string",
+            "description": "select year only"
+        },
+
+        "reportYearMonth": {
+            "type": "string",
+            "format": "date"
+        },
+
+        "dataGlossary": {
+            "type": "boolean"
+        },
+
+        "policyNumber": {
+            "type": "string",
+            "minLength": 3,
+            "description": "Please enter policy number"
+        }
     },
-    "description": {
-      "title": "Long Description",
-      "type": "string"
-    },
-    "done": {
-      "type": "boolean"
-    },
-    "due_date": {
-      "type": "string",
-      "format": "date"
-    },
-    "rating": {
-      "type": "integer",
-      "maximum": 5
-    },
-    "recurrence": {
-      "type": "string",
-      "enum": ["Never", "Daily", "Weekly", "Monthly"]
-    },
-    "recurrence_interval": {
-      "type": "integer"
-    }
-  },
-  "required": ["name", "due_date"]
+    "required": [
+        "name",
+        "due_date",
+        "reportType",
+        "producerOfTecords",
+        "accountType",
+        "startDate",
+        "endDate",
+        "producerOfRecords",
+        "reportMonth",
+        "reportYear",
+        "policyNumber"
+    ]
 }

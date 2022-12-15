@@ -8,6 +8,7 @@
     "@jsonforms/core": "^3.0.0",
     "@jsonforms/material-renderers": "^3.0.0",
     "@jsonforms/react": "^3.0.0",
+    "@jsonforms/vanilla-renderers": "^3.0.0",
     "@mui/icons-material": "^5.0.0",
     "@mui/lab": "^5.0.0-alpha.58",
     "@mui/material": "^5.0.0",
